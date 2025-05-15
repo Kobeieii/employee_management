@@ -1,14 +1,14 @@
 from django.db import models
-from employee.models.status import Status, StatusChoices
+from employee.models.status import Status
 
 
 class Employee(models.Model):
     first_name = models.CharField(max_length=125)
     last_name = models.CharField(max_length=125)
-    address = models.EmailField(unique=True)
+    address = models.TextField()
     is_manager = models.BooleanField(default=False)
     status = models.ForeignKey(
-        Status, on_delete=models.CASCADE, default=StatusChoices.NORMAL
+        Status, on_delete=models.CASCADE, default=Status.get_default_status
     )
     image = models.ImageField(upload_to="employee_images/", blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)

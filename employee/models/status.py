@@ -18,3 +18,7 @@ class Status(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_default_status():
+        status, _ = Status.objects.get_or_create(name=StatusChoices.NORMAL)
+        return status.id
