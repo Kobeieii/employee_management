@@ -1,5 +1,5 @@
 from django.db import models
-from employee.models.status import Status
+from employee.models.status import Status, StatusChoices
 
 
 class Employee(models.Model):
@@ -8,8 +8,7 @@ class Employee(models.Model):
     address = models.EmailField(unique=True)
     is_manager = models.BooleanField(default=False)
     status = models.ForeignKey(
-        Status,
-        on_delete=models.CASCADE,
+        Status, on_delete=models.CASCADE, default=StatusChoices.NORMAL
     )
     image = models.ImageField(upload_to="employee_images/", blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)

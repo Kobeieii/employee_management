@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from rest_framework import viewsets, mixins
+from authentication.serializers import RegisterSerializer
 
-# Create your views here.
+
+class RegisterViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
+    serializer_class = RegisterSerializer
+    queryset = None
