@@ -7,6 +7,10 @@ class StatusChoices(models.TextChoices):
     PROBATION = "Probation"
     NORMAL = "Normal"
     RESIGNED = "Resigned"
+    SUSPENDED = "Suspended"
+    TERMINATED = "Terminated"
+    RETIRED = "Retired"
+    CONTRACT = "Contract"
 
 
 class Status(models.Model):
