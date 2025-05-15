@@ -1,7 +1,6 @@
 from django.db import models
 
 
-# Status model: Contains the current status of the employee (e.g., in recruitment process, waiting for onboarding, in probation period, normal, and resigned).
 class Status(models.Model):
 
     class StatusChoices(models.TextChoices):
