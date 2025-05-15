@@ -62,7 +62,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'employee_mangement.wsgi.application'
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 
 # Password validation
