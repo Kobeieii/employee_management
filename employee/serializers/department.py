@@ -15,12 +15,11 @@ class DepartmentSerializer(serializers.ModelSerializer):
         model = Department
         fields = "__all__"
 
-    def validate(self, attrs):
-        manager = attrs.get("manager")
+    def validate_manager_id(self, manager):
         if manager and not manager.is_manager:
             raise serializers.ValidationError(
                 "This employee is not marked as a manager."
             )
         if manager and manager.deleted_at:
             raise serializers.ValidationError("This employee is deleted.")
-        return super().validate(attrs)
+        return super().validate(manager)
