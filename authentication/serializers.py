@@ -8,7 +8,7 @@ class RegisterSerializer(serializers.Serializer):
     first_name = serializers.CharField()
     last_name = serializers.CharField()
     address = serializers.CharField()
-    image = serializers.ImageField(required=False)
+    image = serializers.ImageField(required=False, allow_null=True)
 
     password = serializers.CharField(write_only=True)
 

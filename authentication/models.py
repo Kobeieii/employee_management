@@ -9,9 +9,21 @@ from employee.models.employee import Employee
 
 
 class CustomUserManager(BaseUserManager):
+
+    def is_valid_email(self, email):
+        try:
+            email, domain_part = email.strip().rsplit("@", 1)
+            if not domain_part:
+                return False
+            return True
+        except ValueError:
+            return False
+
     def create_user(self, email, password=None, **extra_fields):
-        if not email:
-            raise ValueError("Email must be set")
+        if not email or not self.is_valid_email(email):
+            raise ValueError("Email must be valid")
+        if not password:
+            raise ValueError("Password must be set")
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
