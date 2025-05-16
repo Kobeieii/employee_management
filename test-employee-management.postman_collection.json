@@ -73,8 +73,18 @@
 							"script": {
 								"exec": [
 									"const responseJson = pm.response.json();",
-									"var bodyToken = responseJson.access_token;",
-									"pm.environment.set(\"bodyToken\", bodyToken)"
+									"var bodyToken = responseJson.access;",
+									"pm.collectionVariables.set('bodyToken', bodyToken)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -710,7 +720,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{local}}/api/employee/position/1/",
+									"raw": "{{local}}/api/employee/position/6/",
 									"host": [
 										"{{local}}"
 									],
@@ -718,7 +728,7 @@
 										"api",
 										"employee",
 										"position",
-										"1",
+										"6",
 										""
 									]
 								}
@@ -733,7 +743,7 @@
 				"bearer": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ3MzY3NDI2LCJpYXQiOjE3NDczNjM4MjYsImp0aSI6ImI2OThjODE3YTk2YzQ3MTNiMTgxMGQ2YzdlNDc2ZjY1IiwidXNlcl9pZCI6NH0.QJbn4xrqJ_midk0LR_lGdqxBbz_0kLlDfdj9IOT3exo",
+						"value": "{{bodyToken}}",
 						"type": "string"
 					}
 				]

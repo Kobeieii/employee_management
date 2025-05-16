@@ -1,4 +1,3 @@
-from django.utils import timezone
 from rest_framework import serializers
 
 from employee.models.employee import Employee
@@ -15,8 +14,3 @@ class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Employee
         fields = "__all__"
-
-    def delete(self):
-        instance = self.instance
-        instance.deleted_at = timezone.now()
-        instance.save()

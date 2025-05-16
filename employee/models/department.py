@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.db import models
 from employee.models.employee import Employee
 
@@ -8,3 +9,7 @@ class Department(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     deleted_at = models.DateTimeField(null=True, blank=True)
+
+    def delete(self):
+        self.deleted_at = timezone.now()
+        self.save()

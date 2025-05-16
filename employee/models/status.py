@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.db import models
 
 
@@ -26,3 +27,7 @@ class Status(models.Model):
     def get_default_status():
         status, _ = Status.objects.get_or_create(name=StatusChoices.NORMAL)
         return status.id
+    
+    def delete(self):
+        self.deleted_at = timezone.now()
+        self.save()

@@ -28,7 +28,3 @@ class DepartmentViewSet(
 
     def get_queryset(self):
         return self.queryset.filter(deleted_at__isnull=True)
-
-    def perform_destroy(self, instance):
-        serializer = self.get_serializer(instance)
-        serializer.delete()

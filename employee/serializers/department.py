@@ -1,4 +1,3 @@
-from django.utils import timezone
 from rest_framework import serializers
 
 from employee.models.department import Department
@@ -25,8 +24,3 @@ class DepartmentSerializer(serializers.ModelSerializer):
         if manager and manager.deleted_at:
             raise serializers.ValidationError("This employee is deleted.")
         return super().validate(attrs)
-
-    def delete(self):
-        instance = self.instance
-        instance.deleted_at = timezone.now()
-        instance.save()

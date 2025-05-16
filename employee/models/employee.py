@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.db import models
 from employee.models.status import Status
 
@@ -20,3 +21,7 @@ class Employee(models.Model):
 
     class Meta:
         unique_together = ("first_name", "last_name")
+
+    def delete(self):
+        self.deleted_at = timezone.now()
+        self.save()
