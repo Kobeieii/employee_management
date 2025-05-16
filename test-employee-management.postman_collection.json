@@ -1,0 +1,799 @@
+{
+	"info": {
+		"_postman_id": "0a99fbca-425f-4e27-9289-be1c0002e426",
+		"name": "test-employee-management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19183628"
+	},
+	"item": [
+		{
+			"name": "authentication",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "user5@email.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "passwordv",
+									"type": "text"
+								},
+								{
+									"key": "first_name",
+									"value": "Test",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "User5",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Bangkok, Thailand",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/Users/kobeieii/Desktop/Screenshot 2568-04-03 at 12.17.50.png",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}/api/authentication/register/",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"authentication",
+								"register",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();",
+									"var bodyToken = responseJson.access_token;",
+									"pm.environment.set(\"bodyToken\", bodyToken)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "user4@email.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}/api/authentication/login/",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"authentication",
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "refresh",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc0NzQxNDIwNSwiaWF0IjoxNzQ3MzI3ODA1LCJqdGkiOiJhOWUxZTAxOTFjNzQ0YzgwYTlhZTI0ZDE5NzQ3ZDY4ZCIsInVzZXJfaWQiOjR9.Kh1WlqW7hJsUPzQi5frVXmp9Hcat4_MSenGRy-8FDVE",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}/api/authentication/refresh/",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"api",
+								"authentication",
+								"refresh",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "employee",
+			"item": [
+				{
+					"name": "status",
+					"item": [
+						{
+							"name": "status create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Suspended",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/api/employee/status/",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"employee",
+										"status",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "status update",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Terminated",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/api/employee/status/6/",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"employee",
+										"status",
+										"6",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "status retrieve",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/api/employee/status/6/",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"employee",
+										"status",
+										"6",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "status list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/api/employee/status/?name__icontains=Re",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"employee",
+										"status",
+										""
+									],
+									"query": [
+										{
+											"key": "name__icontains",
+											"value": "Re"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "status delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/api/employee/status/8/",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"employee",
+										"status",
+										"8",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "employee",
+					"item": [
+						{
+							"name": "employee create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "first_name",
+											"value": "Super",
+											"type": "text"
+										},
+										{
+											"key": "last_name",
+											"value": "Manager",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "Samutprakarn, Thailand",
+											"type": "text"
+										},
+										{
+											"key": "is_manager",
+											"value": "True",
+											"type": "text"
+										},
+										{
+											"key": "status_id",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/Users/kobeieii/Desktop/Screenshot 2568-05-01 at 22.31.02.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/api/employee/employee/",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"employee",
+										"employee",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "employee update",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "first_name",
+											"value": "Superrr",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/api/employee/employee/12/",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"employee",
+										"employee",
+										"12",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "employee retrieve",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/api/employee/employee/1/",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"employee",
+										"employee",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "employee list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/api/employee/employee/",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"employee",
+										"employee",
+										""
+									],
+									"query": [
+										{
+											"key": "status__name",
+											"value": "Normal",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "employee delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{local}}/api/employee/employee/12/",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"employee",
+										"employee",
+										"12",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "department",
+					"item": [
+						{
+							"name": "department create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Engineer",
+											"type": "text"
+										},
+										{
+											"key": "manager_id",
+											"value": "3",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/api/employee/department/",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"employee",
+										"department",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "department update",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Account",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/api/employee/department/9/",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"employee",
+										"department",
+										"9",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "department retieve",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/api/employee/department/9/",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"employee",
+										"department",
+										"9",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "department list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/api/employee/department/",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"employee",
+										"department",
+										""
+									],
+									"query": [
+										{
+											"key": "name__icontains",
+											"value": "ount",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "department delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/api/employee/department/9/",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"employee",
+										"department",
+										"9",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "position",
+					"item": [
+						{
+							"name": "position create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Senior level",
+											"type": "text"
+										},
+										{
+											"key": "salary",
+											"value": "75000",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/api/employee/position/",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"employee",
+										"position",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "position update",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "salary",
+											"value": "85000",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/api/employee/position/3/",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"employee",
+										"position",
+										"3",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "position retrieve",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/api/employee/position/1/",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"employee",
+										"position",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "position list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/api/employee/position/",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"employee",
+										"position",
+										""
+									],
+									"query": [
+										{
+											"key": "salary__gte",
+											"value": "50000",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "position delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{local}}/api/employee/position/1/",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"api",
+										"employee",
+										"position",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ3MzY3NDI2LCJpYXQiOjE3NDczNjM4MjYsImp0aSI6ImI2OThjODE3YTk2YzQ3MTNiMTgxMGQ2YzdlNDc2ZjY1IiwidXNlcl9pZCI6NH0.QJbn4xrqJ_midk0LR_lGdqxBbz_0kLlDfdj9IOT3exo",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "local",
+			"value": "http://127.0.0.1:8000",
+			"type": "string"
+		},
+		{
+			"key": "bodyToken",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
