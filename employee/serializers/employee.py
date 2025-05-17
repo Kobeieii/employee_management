@@ -7,7 +7,7 @@ from employee.serializers.status import StatusSerializer
 
 class EmployeeSerializer(serializers.ModelSerializer):
     status_id = serializers.PrimaryKeyRelatedField(
-        source="status", queryset=Status.objects.all(), write_only=True
+        source="status", queryset=Status.objects.all(), write_only=True, required=False
     )
     status = StatusSerializer(read_only=True)
 
